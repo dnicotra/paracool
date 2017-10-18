@@ -1,0 +1,3 @@
+sudo dpkg-reconfigure keyboard-configuration
+sudo service console-setup restart
+clear
