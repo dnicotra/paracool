@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+
+lb config noauto \
+	--architectures amd64 \
+	--distribution stretch \
+	--apt-recommends true \
+	--apt-source-archives false \
+	--archive-areas "main contrib non-free" \
+	--iso-application "Paracool Live" \
+	--iso-publisher "Davide Nicotra" \
+	--iso-preparer "live-build" \
+	--memtest none \
+	"${@}"
