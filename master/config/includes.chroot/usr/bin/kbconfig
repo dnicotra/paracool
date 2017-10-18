@@ -1,3 +1,8 @@
+#!/bin/sh
+
+#Run the keyboard configuration wizard
 sudo dpkg-reconfigure keyboard-configuration
+
+#Apply the changes
 sudo service console-setup restart
 clear
