@@ -9,6 +9,7 @@ It is in early developing state. No prealpha/alpha/beta version are avaiable in 
 If you want to build this early stage of the project, just install Debian Live and clone the repo. Then
 ```
 lb clean --purge
+lb config
 lb build
 ```
 It will produce an iso-hybrid bootable image. I can't guarantee anything!
