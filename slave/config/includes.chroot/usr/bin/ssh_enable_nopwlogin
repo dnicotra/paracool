@@ -1,0 +1,7 @@
+#!/bin/sh
+
+#Applying configuration
+sudo cp /lib/live/misc/sshd_config_nopwauth /etc/ssh/sshd_config
+
+#Restarting ssh daemon
+sudo service ssh restart

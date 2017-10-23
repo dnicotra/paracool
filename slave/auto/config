@@ -8,7 +8,6 @@ lb config noauto \
 	--apt-recommends true \
 	--apt-source-archives false \
 	--archive-areas "main contrib non-free" \
-	--bootloaders syslinux \
 	--iso-application "Paracool Live" \
 	--iso-publisher "Davide Nicotra" \
 	--iso-preparer "live-build" \
