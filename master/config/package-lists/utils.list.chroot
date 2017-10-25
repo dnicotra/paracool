@@ -1,4 +1,4 @@
 console-setup
+console-data
+console-common
 less
-aufs-dkms
-aufs-tools

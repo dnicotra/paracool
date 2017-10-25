@@ -1,0 +1,26 @@
+#!/bin/sh
+
+## live-config(7) - System Configuration Components
+## Copyright (C) 2006-2015 Daniel Baumann <mail@daniel-baumann.ch>
+##
+## This program comes with ABSOLUTELY NO WARRANTY; for details see COPYING.
+## This is free software, and you are welcome to redistribute it
+## under certain conditions; see COPYING for details.
+
+
+#set -e
+
+Config ()
+{
+	#GENERATING USER KEYS
+	mkdir /home/user/.ssh
+	ssh-keygen -q -t rsa -N "" -f /home/user/.ssh/id_rsa
+	cat /home/user/.ssh/id_rsa.pub >> /home/user/.ssh/authorized_keys
+	chown -R user:user /home/user/.ssh
+	chmod 600 /home/user/.ssh/authorized_keys
+
+	#UPDATING NFS
+	#exportfs -ra
+}
+
+Config

@@ -1,0 +1,15 @@
+#!/bin/bash
+if [ ! -f /lib/paracool/CLUSTER_CONFIG ] ;
+	then
+	sudo touch /lib/paracool/CLUSTER_CONFIG
+fi
+
+echo $'Starting UDP master announce...\n'
+sudo python /lib/paracool/bin/master_announce.py > /dev/null &
+sudo echo $! | sudo tee /lib/paracool/UDP_ANNUNCE.pid > /dev/null
+
+
+echo $'Starting Auth server...\n'
+sudo python /lib/paracool/bin/master_auth_server.py &
+sudo echo $! | sudo tee /lib/paracool/AUTH_SERVER.pid > /dev/null
+echo $'Now boot slaves.\n'
