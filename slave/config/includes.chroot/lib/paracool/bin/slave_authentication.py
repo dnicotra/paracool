@@ -35,11 +35,14 @@ class AuthClient(protocol.Protocol):
             self.state = "PENDING"
             return
         else:
-            if data[:-1] == "OK":
+            if "OK" in data:
                 print "Master authentication OK!"
                 global authenticated
+                uid = int(data[:-4])
+                with open('/lib/paracool/UID','w') as f:
+                    f.write(str(uid))
                 authenticated=True
-                #WAIT AND MOUNT
+
             else:
                 print "Master authentication FAILED!"
             self.transport.loseConnection()

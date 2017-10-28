@@ -25,6 +25,22 @@ while [ ! -f "/lib/paracool/MASTER_IP" ]
 do
 	sudo python /lib/paracool/bin/slave_authentication.py
 done
-echo "Got Master @ "
-cat /lib/paracool/MASTER_IP
+master_ip=$( < /lib/paracool/MASTER_IP )
+uid=$( < /lib/paracool/UID )
+echo "Got Master @ $master_ip ... adding to hosts"
+sudo sh -c "echo '$master_ip master' >> /etc/hosts"
+#sudo /lib/paracool/bin/hostname_changer.sh "slave$uid"
+sudo sed -i "s/slave/slave$uid/g" /etc/hosts
+sudo hostnamectl set-hostname "slave$uid"
+echo "Sleeping before mounting /home"
+echo "3"
+sleep 1
+echo "2"
+sleep 1
+echo "1"
+sleep 1
+
+
+echo "Mounting master:/home -> /home"
+sudo mount -t nfs master:/home /home
 #MOUNT

@@ -11,5 +11,6 @@ lb config noauto \
 	--iso-application "Paracool Live" \
 	--iso-publisher "Davide Nicotra" \
 	--iso-preparer "live-build" \
+	--bootappend-live "boot=live components nosplash hostname=slave" \
 	--memtest none \
 	"${@}"
