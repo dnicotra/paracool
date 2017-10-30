@@ -35,7 +35,7 @@ def add_slave(slave_ip,uid):
         f.writelines("ALL:"+slave_ip + "\n")
 
     with open('/home/user/machine_file','a') as f:
-        f.writelines(slave_ip + "\n")
+        f.writelines("slave"+str(uid)+ "\n")
 
     with open('/etc/hosts','a') as f:
         f.writelines("{}    slave{}\n".format(slave_ip,uid))

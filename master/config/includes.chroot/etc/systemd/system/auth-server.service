@@ -1,0 +1,13 @@
+[Unit]
+Description=Cluster master UDP Announcer
+After=network.target
+
+[Service]
+Type=simple
+User=root
+StandardOutput=journal
+ExecStart=/usr/bin/python /lib/paracool/bin/master_auth_server.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

@@ -10,14 +10,18 @@ def debug_message(message):
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 my_socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST,1)
+n_err = 0
 while True:
-    if not os.path.exists("/lib/paracool/CLUSTER_CONFIG"):
-        break
     try:
         my_socket.sendto("MASTER ANNOUNCE", ('<broadcast>' ,8881))
         debug_message("Sending Master Announce")
+        n_err=0
     except:
-        debug_message("Network not ready. Waiting...")
+        if n_err<20:
+            debug_message("Network Error. Waiting...")
+        else:
+            debug_message("Network unavaiable for 60 seconds. Check settings then restart.")
+            break
     time.sleep(3)
 
 

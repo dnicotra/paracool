@@ -6,6 +6,7 @@ lb config noauto \
 	--architectures amd64 \
 	--distribution stretch \
 	--apt-recommends true \
+	--apt-indices false \
 	--apt-source-archives false \
 	--archive-areas "main contrib non-free" \
 	--iso-application "Paracool Live" \

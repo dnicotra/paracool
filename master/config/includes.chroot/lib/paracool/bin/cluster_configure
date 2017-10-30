@@ -1,15 +1,13 @@
 #!/bin/bash
-if [ ! -f /lib/paracool/CLUSTER_CONFIG ] ;
-	then
-	sudo touch /lib/paracool/CLUSTER_CONFIG
-fi
-
 echo $'Starting UDP master announce...\n'
-sudo python /lib/paracool/bin/master_announce.py > /dev/null &
-sudo echo $! | sudo tee /lib/paracool/UDP_ANNUNCE.pid > /dev/null
+sudo systemctl start udp-announce
 
 
 echo $'Starting Auth server...\n'
-sudo python /lib/paracool/bin/master_auth_server.py &
-sudo echo $! | sudo tee /lib/paracool/AUTH_SERVER.pid > /dev/null
-echo $'Now boot slaves.\n'
+sudo systemctl start auth-server
+
+if [ "`sudo systemctl is-active udp-announce`" -eq "active" ] && [ "`sudo systemctl is-active auth-server`" -eq "active" ] ; then
+	dialog --title 'OK' --msgbox 'The master is configured for accepting slave clients.\nNow boot each slave and wait for them to found the master.\n\nWhen done type finalize_configuration' 15 65
+else
+	dialog --title 'ERROR' --msgbox 'Something went wrong. Check your network configuration.' 15 65
+fi

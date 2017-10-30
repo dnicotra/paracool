@@ -1,13 +1,4 @@
 #!/bin/bash
 
-if [ -f /lib/paracool/AUTH_SERVER.pid ] ; then
-	sudo kill ` cat /lib/paracool/AUTH_SERVER.pid ` && sudo rm /lib/paracool/AUTH_SERVER.pid
-fi
-
-if [ -f /lib/paracool/UDP_ANNOUNCE.pid ] ; then
-	sudo kill ` cat /lib/paracool/UDP_ANNOUNCE.pid ` && sudo rm /lib/paracool/UDP_ANNOUNCE.pid
-fi
-
-if [ -f /lib/paracool/CLUSTER_CONFIG ] ; then
-	sudo rm /lib/paracool/CLUSTER_CONFIG
-fi
+sudo systemctl stop udp-announce
+sudo systemctl stop auth-server
